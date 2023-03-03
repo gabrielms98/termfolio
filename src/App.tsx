@@ -6,11 +6,16 @@ import Terminal, {
 } from "react-terminal-ui";
 import Background from "./assets/background.jpeg";
 
-type Commands = "clear" | "help";
+import About from "./components/about";
+import Experience from "./components/xp";
+
+type Commands = "clear" | "help" | "about" | "xp";
 
 const commandDescriptions: Record<Commands, string> = {
   clear: "Clears the terminal.",
   help: "Shows this message.",
+  about: "Shows information about me.",
+  xp: "List my work experince.",
 };
 
 function App() {
@@ -33,22 +38,28 @@ function App() {
   }
 
   function parse(terminalInput: string) {
+    addTerminalInput(terminalInput);
+
     switch (terminalInput) {
       case "clear":
         setTerminalOuput([]);
         return;
       case "help":
-        addTerminalInput(terminalInput);
-        Object.entries(commandDescriptions).map(([key, value]) =>
+        Object.entries(commandDescriptions).map(([key, desc]) =>
           addTerminalOutput(
             <>
-              <b>{key}</b> - {value}
+              <b>{key}</b> - {desc}
             </>
           )
         );
         break;
+      case "about":
+        addTerminalOutput(<About />);
+        break;
+      case "xp":
+        addTerminalOutput(<Experience />);
+        break;
       default:
-        addTerminalInput(terminalInput);
         addTerminalOutput(
           "Command not found. Type 'help' to see the available commands."
         );
@@ -63,7 +74,7 @@ function App() {
     <div className="w-screen h-screen">
       <img className="absolute w-full h-full z-0" src={Background} alt=""></img>
       <div className="z-10 absolute w-full h-full flex justify-center items-center">
-        <div className="bg-[#282a36] rounded-md w-4/5 p-2 relative">
+        <div className="bg-[#282a36] rounded-md w-4/5 max-w-6xl p-2 relative drop-shadow-md">
           <Terminal
             name="gabrielms.dev"
             colorMode={ColorMode.Dark}
