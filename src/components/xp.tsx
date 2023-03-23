@@ -48,7 +48,7 @@ function Experience() {
       <p>
         <b>Experiences</b>
         <br></br>
-        <span>3+ year building software for the industry</span>
+        <span>3+ years building software for the industry</span>
       </p>
 
       <br></br>
