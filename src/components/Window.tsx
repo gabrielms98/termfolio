@@ -82,7 +82,6 @@ function Window() {
           </div>
         </div>
       </div>
-      );
     </main>
   );
 }
