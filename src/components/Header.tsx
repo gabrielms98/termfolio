@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
+
 import { IcBaselineApple } from "./icons/AppleLogo";
 import { TypcnBatteryCharge } from "./icons/batery";
 import { MaterialSymbolsWifiSharp } from "./icons/Wifi";
 
 function Header() {
-  const date = new Date();
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       <header className="px-2 relative">
@@ -26,7 +36,6 @@ function Header() {
               {date
                 .toLocaleDateString("en-us", {
                   weekday: "short",
-                  year: "numeric",
                   month: "short",
                   day: "numeric",
                 })
