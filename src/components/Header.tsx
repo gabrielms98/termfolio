@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { IcBaselineApple } from "./icons/AppleLogo";
-import { TypcnBatteryCharge } from "./icons/Batery";
+import { TypcnBatteryCharge } from "./icons/BateryLogo";
 import { MaterialSymbolsWifiSharp } from "./icons/Wifi";
 
 function Header() {
