@@ -16,3 +16,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+#root {
+  @apply w-screen;
+  @apply h-screen;
+
+  @apply overflow-hidden;
+}
