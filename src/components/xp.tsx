@@ -54,8 +54,8 @@ function Experience() {
       <br></br>
 
       <ul>
-        {experinces.map((experience) => (
-          <li>
+        {experinces.map((experience, i) => (
+          <li key={i}>
             <span>
               <b>
                 {experience.title} @ {experience.company}
@@ -71,8 +71,8 @@ function Experience() {
             <br></br>
 
             <span className="text-sm">
-              {experience.stack.map((tool) => (
-                <span>{tool} </span>
+              {experience.stack.map((tool, i) => (
+                <span key={i}>{tool} </span>
               ))}
             </span>
             <br></br>
