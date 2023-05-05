@@ -6,6 +6,7 @@ import TerminalWindow from "./TerminalWindow";
 interface IAppState {
   app: JSX.Element;
   show: boolean;
+  id: number;
 }
 
 function Factory(props: { apps: IAppState[] }) {
@@ -15,7 +16,7 @@ function Factory(props: { apps: IAppState[] }) {
         .filter((app) => app.show)
         .map((app, i) => (
           <Draggable positionOffset={{ x: i * 5 + "%", y: i * 5 + "%" }}>
-            <div className="absolute">{app.app}</div>
+            <div className="absolute drop-shadow-sm">{app.app}</div>
           </Draggable>
         ))}
     </>
@@ -23,8 +24,8 @@ function Factory(props: { apps: IAppState[] }) {
 }
 
 function Window() {
-  const [apps, setApps] = useState<IAppState[]>([
-    { app: <TerminalWindow />, show: true },
+  const [apps] = useState<IAppState[]>([
+    { app: <TerminalWindow />, show: true, id: 0 },
   ]);
 
   return (

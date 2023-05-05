@@ -77,10 +77,10 @@ function TerminalWindow() {
       to my portifolio<br></br> | | ::::::::::::::::: | | |<br></br> | |
       ::::::::::::::::: | | |<br></br> | | ::::::::::::::::: | | |
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type{" "}
-      <b>help</b> to get a list of command available
+      <b>help</b> to get a list of commands available
       <br></br> | | ::::::::::::::::: | |
       ,|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This
-      is work in progress, don't be harsh on it<br></br> | !___________________!
+      is a work in progress, don't be harsh on it<br></br> | !___________________!
       |(c|<br></br> !_______________________!__!<br></br> / \<br></br> /
       [][][][][][][][][][][][][] \<br></br> / [][][][][][][][][][][][][][] \
       <br></br>( [][][][][____________][][][][] )<br></br> \
