@@ -10,7 +10,7 @@ import { useState } from "react";
 
 function App() {
   const [APPS, setApp] = useState<IAppList>({
-    TERMINAL_APP: { app: <TerminalWindow />, show: true, icon: "" },
+    TERMINAL_APP: { app: <TerminalWindow />, show: true, icon: <></> },
   });
 
   function toggleApp(id: string, show?: boolean) {
