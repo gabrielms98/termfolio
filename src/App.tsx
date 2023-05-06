@@ -32,7 +32,7 @@ function App() {
           ></img>
         </div>
         <Header />
-        <Window apps={APPS} />
+        <Window />
         <Dock toggleApp={toggleApp} />
       </AppContext.Provider>
     </>
