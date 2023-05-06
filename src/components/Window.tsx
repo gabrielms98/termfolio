@@ -1,21 +1,17 @@
-import { useState } from "react";
-
 import Draggable from "react-draggable";
-import TerminalWindow from "./TerminalWindow";
 
-interface IAppState {
-  app: JSX.Element;
-  show: boolean;
-  id: number;
-}
+import { IAppList } from "../models/AppState";
 
-function Factory(props: { apps: IAppState[] }) {
+function Factory(props: { apps: IAppList }) {
   return (
     <>
-      {props.apps
+      {Object.values(props.apps)
         .filter((app) => app.show)
         .map((app, i) => (
-          <Draggable positionOffset={{ x: i * 5 + "%", y: i * 5 + "%" }}>
+          <Draggable
+            key={i}
+            positionOffset={{ x: i * 5 + "%", y: i * 5 + "%" }}
+          >
             <div className="absolute drop-shadow-sm">{app.app}</div>
           </Draggable>
         ))}
@@ -23,11 +19,7 @@ function Factory(props: { apps: IAppState[] }) {
   );
 }
 
-function Window() {
-  const [apps] = useState<IAppState[]>([
-    { app: <TerminalWindow />, show: true, id: 0 },
-  ]);
-
+function Window({ apps }: { apps: IAppList }) {
   return (
     <main className="window w-full h-full relative flex items-center justify-center">
       <div className="w-screen h-screen">
