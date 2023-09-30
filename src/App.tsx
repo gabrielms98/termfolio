@@ -7,10 +7,20 @@ import { AppContext } from "./contexts/AppContext";
 import { IAppList } from "./models/AppState";
 import TerminalWindow from "./components/TerminalWindow";
 import { useState } from "react";
+import { Mail, TerminalSquare } from "lucide-react";
 
 function App() {
   const [APPS, setApp] = useState<IAppList>({
-    TERMINAL_APP: { app: <TerminalWindow />, show: true, icon: <></> },
+    TERMINAL_APP: {
+      app: <TerminalWindow />,
+      show: true,
+      icon: <TerminalSquare width={24} height={24} />,
+    },
+    MAIL_APP: {
+      app: <TerminalWindow />,
+      show: false,
+      icon: <Mail width={24} height={24} />,
+    },
   });
 
   function toggleApp(id: string, show?: boolean) {

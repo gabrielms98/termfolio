@@ -1,7 +1,7 @@
 export interface IAppState {
   app: JSX.Element;
   show: boolean;
-  icon: JSX.Element;
+  icon: any; // fix this later
 }
 
 export type IAppList = Record<string, IAppState>;
