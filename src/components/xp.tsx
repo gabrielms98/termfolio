@@ -13,7 +13,7 @@ const experinces: Experience[] = [
     end: "Present",
     company: "Optimalex",
     location: "Remote US",
-    title: "Full Stack Software Engineer",
+    title: "Software Engineer",
     stack: [
       "Angular",
       "Flask",
@@ -27,7 +27,7 @@ const experinces: Experience[] = [
   {
     begin: "April 2021",
     end: "October 2021",
-    company: "Phone2Action",
+    company: "GovPredict",
     location: "Remote US",
     title: "Web Support Engineer",
     stack: ["PHP", "Vue2", "MySQL", "Laravel", "Javascript"],
