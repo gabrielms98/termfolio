@@ -1,7 +1,7 @@
 export interface IAppState {
   app: JSX.Element;
   show: boolean;
-  icon: any;
+  icon: React.ReactNode;
   zIndex: number;
 }
 

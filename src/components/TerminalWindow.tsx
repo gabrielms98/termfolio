@@ -21,8 +21,6 @@ const commandDescriptions: Record<Commands, string> = {
 function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
   const { toggleApp } = useContext(AppContext);
   const terminalRef = useRef<HTMLDivElement>(null);
-  const scrollTarget = useRef(0);
-  const scrollOnNextRender = useRef(false);
   const [isTyping, setIsTyping] = useState(false);
   const queueRef = useRef<(string | JSX.Element)[]>([]);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -76,12 +74,6 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
       flushAllQueued();
     }
 
-    const container = terminalRef.current?.querySelector(".react-terminal");
-    if (container) {
-      scrollTarget.current = container.scrollHeight;
-    }
-    scrollOnNextRender.current = true;
-
     addTerminalInput(terminalInput);
 
     switch (terminalInput) {
@@ -113,7 +105,7 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
     }
   }
 
-  const [terminalOuput, setTerminalOuput] = useState<
+  const [terminalOutput, setTerminalOuput] = useState<
     (TerminalOutput | TerminalInput)[]
   >([
     <TerminalOutput key="1">
@@ -138,12 +130,12 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
 
   useEffect(() => {
     const container = terminalRef.current?.querySelector(".react-terminal");
-    if (!container || terminalOuput.length <= 1) return;
+    if (!container || terminalOutput.length <= 1) return;
 
     setTimeout(() => {
       container.scrollTop = container.scrollHeight;
     }, 0);
-  }, [terminalOuput]);
+  }, [terminalOutput]);
 
   useEffect(() => {
     return () => clearTimeout(timerRef.current);
@@ -207,7 +199,7 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
         colorMode={ColorMode.Dark}
         onInput={(terminalInput) => parse(terminalInput)}
       >
-        {terminalOuput}
+        {terminalOutput}
       </Terminal>
     </div>
   );

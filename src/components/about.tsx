@@ -1,10 +1,12 @@
+import { contact } from "../data/portfolio";
+
 const info: [string, string][] = [
-  ["Name", "Gabriel Martins Silva"],
-  ["Role", "Software Engineer"],
-  ["Email", "gabrielms.dev@gmail.com"],
-  ["Phone", "+55 (31) 98323-8957"],
-  ["Web", "gabrielms.dev"],
-  ["LinkedIn", "linkedin.com/in/gabrielms98"],
+  ["Name", contact.name],
+  ["Role", contact.role],
+  ["Email", contact.email],
+  ["Phone", contact.phone],
+  ["Web", contact.web],
+  ["LinkedIn", contact.linkedin],
 ];
 
 export function getAboutLines(): JSX.Element[] {

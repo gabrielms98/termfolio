@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect, useRef } from "react";
-import { AppContext } from "../contexts/AppContext";
+import { useState, useEffect, useRef } from "react";
+import WindowFrame from "./WindowFrame";
 
 interface Track {
   title: string;
@@ -54,7 +54,6 @@ function formatTime(sec: number) {
 }
 
 function SpotifyWindow({ appId = "SPOTIFY_APP" }: { appId?: string }) {
-  const { toggleApp } = useContext(AppContext);
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -99,40 +98,13 @@ function SpotifyWindow({ appId = "SPOTIFY_APP" }: { appId?: string }) {
     }
   }
 
-  function handleButton(e: React.MouseEvent, action: () => void) {
-    e.stopPropagation();
-    action();
-  }
-
   return (
-    <div className="bg-[#121212] rounded-xl w-[28rem] shadow-2xl shadow-black/50 overflow-hidden text-white flex flex-col">
-      {/* Title bar */}
-      <div className="window-controls flex items-center gap-[6px] px-3 py-2 bg-[#181818]">
-        <button
-          type="button"
-          className="window-btn w-[13px] h-[13px] rounded-full bg-[#ff5f56] flex items-center justify-center cursor-pointer border-0 p-0"
-          onClick={(e) => handleButton(e, () => toggleApp(appId, false))}
-        >
-          <span className="text-[9px] leading-[13px] font-bold text-black/50">✕</span>
-        </button>
-        <button
-          type="button"
-          className="window-btn w-[13px] h-[13px] rounded-full bg-[#ffbd2e] flex items-center justify-center cursor-pointer border-0 p-0"
-          onClick={(e) => handleButton(e, () => toggleApp(appId, false))}
-        >
-          <span className="text-[10px] leading-[13px] font-bold text-black/50">−</span>
-        </button>
-        <button
-          type="button"
-          className="window-btn w-[13px] h-[13px] rounded-full bg-[#27c93f] flex items-center justify-center border-0 p-0"
-        >
-          <span className="text-[9px] leading-[13px] font-bold text-black/50">⤢</span>
-        </button>
-        <span className="flex-1 text-center text-xs text-[#a2a2a2] pr-[57px]">
-          Spotify
-        </span>
-      </div>
-
+    <WindowFrame
+      appId={appId}
+      title="Spotify"
+      className="bg-[#121212] rounded-xl w-[28rem] shadow-2xl shadow-black/50 overflow-hidden text-white flex flex-col"
+      headerClassName="bg-[#181818]"
+    >
       {/* Now playing hero */}
       <div
         className={`bg-gradient-to-b ${track.color} px-5 pt-5 pb-4 flex gap-4 items-end transition-all duration-500`}
@@ -171,6 +143,7 @@ function SpotifyWindow({ appId = "SPOTIFY_APP" }: { appId?: string }) {
       <div className="flex items-center justify-center gap-6 py-2 bg-[#181818]">
         <button
           type="button"
+          aria-label="Previous track"
           className="text-white/70 hover:text-white transition-colors cursor-pointer border-0 bg-transparent p-0"
           onClick={() => prev()}
         >
@@ -180,6 +153,7 @@ function SpotifyWindow({ appId = "SPOTIFY_APP" }: { appId?: string }) {
         </button>
         <button
           type="button"
+          aria-label={playing ? "Pause" : "Play"}
           className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:scale-105 transition-transform cursor-pointer border-0 p-0"
           onClick={() => setPlaying(!playing)}
         >
@@ -195,6 +169,7 @@ function SpotifyWindow({ appId = "SPOTIFY_APP" }: { appId?: string }) {
         </button>
         <button
           type="button"
+          aria-label="Next track"
           className="text-white/70 hover:text-white transition-colors cursor-pointer border-0 bg-transparent p-0"
           onClick={() => next()}
         >
@@ -242,7 +217,7 @@ function SpotifyWindow({ appId = "SPOTIFY_APP" }: { appId?: string }) {
           ))}
         </ul>
       </div>
-    </div>
+    </WindowFrame>
   );
 }
 
