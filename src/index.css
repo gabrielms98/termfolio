@@ -23,3 +23,21 @@
 
   @apply overflow-hidden;
 }
+
+.react-terminal-wrapper .react-terminal-header button {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.react-terminal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.react-terminal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.react-terminal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}

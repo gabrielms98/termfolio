@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Terminal, {
   ColorMode,
   TerminalOutput,
@@ -14,10 +14,13 @@ const commandDescriptions: Record<Commands, string> = {
   clear: "Clears the terminal.",
   help: "Shows this message.",
   about: "Shows information about me.",
-  xp: "List my work experince.",
+  xp: "List my work experience.",
 };
 
 function TerminalWindow() {
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const scrollTarget = useRef(0);
+
   function addTerminalInput(terminalInput: string) {
     setTerminalOuput((currentTerminalOutput) => [
       ...currentTerminalOutput,
@@ -37,6 +40,11 @@ function TerminalWindow() {
   }
 
   function parse(terminalInput: string) {
+    const container = terminalRef.current?.querySelector(".react-terminal");
+    if (container) {
+      scrollTarget.current = container.scrollHeight;
+    }
+
     addTerminalInput(terminalInput);
 
     switch (terminalInput) {
@@ -74,13 +82,12 @@ function TerminalWindow() {
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hello
       <br></br> | | ::::::::::::::::: | | |
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome
-      to my portifolio<br></br> | | ::::::::::::::::: | | |<br></br> | |
+      to my portfolio<br></br> | | ::::::::::::::::: | | |<br></br> | |
       ::::::::::::::::: | | |<br></br> | | ::::::::::::::::: | | |
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type{" "}
       <b>help</b> to get a list of commands available
       <br></br> | | ::::::::::::::::: | |
-      ,|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This
-      is a work in progress, don't be harsh on it<br></br> | !___________________!
+      ,|<br></br> | !___________________!
       |(c|<br></br> !_______________________!__!<br></br> / \<br></br> /
       [][][][][][][][][][][][][] \<br></br> / [][][][][][][][][][][][][][] \
       <br></br>( [][][][][____________][][][][] )<br></br> \
@@ -89,8 +96,20 @@ function TerminalWindow() {
     </TerminalOutput>,
   ]);
 
+  useEffect(() => {
+    const container = terminalRef.current?.querySelector(".react-terminal");
+    if (!container || terminalOuput.length <= 1) return;
+
+    setTimeout(() => {
+      container.scrollTop = scrollTarget.current;
+    }, 0);
+  }, [terminalOuput]);
+
   return (
-    <div className="bg-[#282a36] rounded-md w-[67rem] p-2 relative drop-shadow-md">
+    <div
+      ref={terminalRef}
+      className="bg-[#282a36] rounded-xl w-full min-w-[60rem] max-w-7xl p-2 relative shadow-2xl shadow-black/50"
+    >
       <Terminal
         name="gabrielms.dev"
         colorMode={ColorMode.Dark}

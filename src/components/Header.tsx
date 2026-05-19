@@ -17,13 +17,13 @@ function Header() {
   return (
     <>
       <header className="px-2 relative">
-        <div className="absolute inset-0 bg-[#0E1A2B] bg-gradient-to-r opacity-90 z-0"></div>
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-md z-0"></div>
         <div className="flex justify-between z-10 text-white opacity-100 relative">
           <div className="flex items-center  gap-2">
             <div>
               <IcBaselineApple />
             </div>
-            <div className="font-bold">Portifolio</div>
+            <div className="font-bold">Portfolio</div>
           </div>
           <div className="flex items-center gap-2">
             <div>
