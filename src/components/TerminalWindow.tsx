@@ -160,6 +160,7 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
     style.textContent = [
       ".react-terminal-wrapper::before,",
       ".react-terminal-wrapper::after { display: none !important; }",
+      ".terminal-hidden-input { position: fixed !important; left: -9999px !important; opacity: 0 !important; }",
     ].join("");
     document.head.appendChild(style);
     return () => {

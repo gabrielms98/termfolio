@@ -28,7 +28,7 @@ const experiences: Experience[] = [
     begin: "January 2024",
     end: "July 2024",
     company: "Lexyta",
-    location: "Remote Brazil",
+    location: "Remote US",
     title: "Founder Full Stack Software Engineer",
     stack: ["Angular", "TypeScript", "Stripe", "Angular CDK"],
   },
