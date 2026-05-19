@@ -6,6 +6,7 @@ import Dock from "./components/Dock";
 import { AppContext } from "./contexts/AppContext";
 import { IAppList } from "./models/AppState";
 import TerminalWindow from "./components/TerminalWindow";
+import MailWindow from "./components/MailWindow";
 import { useState, useCallback } from "react";
 
 const TerminalIcon = () => (
@@ -66,7 +67,7 @@ function App() {
       icon: <TerminalIcon />,
     },
     MAIL_APP: {
-      app: <TerminalWindow />,
+      app: <MailWindow />,
       show: false,
       icon: <MailIcon />,
     },
