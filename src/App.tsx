@@ -7,6 +7,7 @@ import { AppContext } from "./contexts/AppContext";
 import { IAppList } from "./models/AppState";
 import TerminalWindow from "./components/TerminalWindow";
 import MailWindow from "./components/MailWindow";
+import SpotifyWindow from "./components/SpotifyWindow";
 import { useState, useCallback } from "react";
 
 const TerminalIcon = () => (
@@ -36,6 +37,35 @@ const TerminalIcon = () => (
       strokeWidth="5"
       strokeLinecap="round"
     />
+  </svg>
+);
+
+const SpotifyIcon = () => (
+  <svg width="34" height="34" viewBox="0 0 120 120">
+    <rect width="120" height="120" rx="26" fill="#1db954" />
+    <g transform="translate(60,60)">
+      <path
+        d="M-25 5 C-10 -5, 10 -5, 25 5"
+        stroke="white"
+        strokeWidth="5"
+        fill="none"
+        strokeLinecap="round"
+      />
+      <path
+        d="M-20 16 C-8 8, 8 8, 20 16"
+        stroke="white"
+        strokeWidth="5"
+        fill="none"
+        strokeLinecap="round"
+      />
+      <path
+        d="M-30 -7 C-12 -19, 12 -19, 30 -7"
+        stroke="white"
+        strokeWidth="5"
+        fill="none"
+        strokeLinecap="round"
+      />
+    </g>
   </svg>
 );
 
@@ -70,6 +100,11 @@ function App() {
       app: <MailWindow />,
       show: false,
       icon: <MailIcon />,
+    },
+    SPOTIFY_APP: {
+      app: <SpotifyWindow />,
+      show: false,
+      icon: <SpotifyIcon />,
     },
   });
 
