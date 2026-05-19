@@ -1,4 +1,7 @@
 import { createContext } from "react";
-import { IAppList } from "../models/AppState";
+import { IAppContext } from "../models/AppState";
 
-export const AppContext = createContext<IAppList>({});
+export const AppContext = createContext<IAppContext>({
+  apps: {},
+  toggleApp: () => {},
+});
