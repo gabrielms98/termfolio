@@ -11,6 +11,7 @@ import SpotifyWindow from "./components/SpotifyWindow";
 import PhotosWindow from "./components/PhotosWindow";
 import ReaderWindow from "./components/ReaderWindow";
 import VSCodeWindow from "./components/VSCodeWindow";
+import SafariWindow from "./components/SafariWindow";
 import {
   TerminalIcon,
   MailIcon,
@@ -18,6 +19,7 @@ import {
   SpotifyIcon,
   ReaderIcon,
   VSCodeIcon,
+  SafariIcon,
 } from "./components/AppIcons";
 import { useState, useCallback } from "react";
 
@@ -57,6 +59,12 @@ function App() {
       app: <VSCodeWindow />,
       show: false,
       icon: <VSCodeIcon />,
+      zIndex: 0,
+    },
+    SAFARI_APP: {
+      app: <SafariWindow />,
+      show: false,
+      icon: <SafariIcon />,
       zIndex: 0,
     },
   });

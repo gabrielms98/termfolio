@@ -8,6 +8,7 @@ const appNames: Record<string, string> = {
   SPOTIFY_APP: "Spotify",
   READER_APP: "Reader",
   VSCODE_APP: "Code",
+  SAFARI_APP: "Safari",
 };
 
 const menuItems = ["File", "Edit", "View", "Window", "Help"];
