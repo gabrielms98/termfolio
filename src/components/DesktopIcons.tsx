@@ -71,7 +71,7 @@ const items: DesktopItem[] = [
 function DesktopIcons() {
   const { toggleApp } = useContext(AppContext);
 
-  function handleDoubleClick(item: DesktopItem) {
+  function handleClick(item: DesktopItem) {
     if (item.action === "app") {
       toggleApp(item.target, true);
     } else {
@@ -99,7 +99,7 @@ function DesktopIcons() {
           key={item.label}
           type="button"
           className="flex flex-col items-center gap-1 p-2 rounded-lg border-0 bg-transparent hover:bg-white/10 active:bg-white/20 cursor-default transition-colors w-24"
-          onDoubleClick={() => handleDoubleClick(item)}
+          onClick={() => handleClick(item)}
         >
           <div className="flex items-center justify-center h-14">
             {item.icon}

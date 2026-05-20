@@ -98,10 +98,99 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
       case "xp":
         queueOutput(...getExperienceLines());
         break;
-      default:
-        queueOutput(
-          "Command not found. Type 'help' to see the available commands."
-        );
+      default: {
+        const cmd = terminalInput.trim().toLowerCase();
+        const nukeCommands = [
+          "rm -rf /",
+          "rm -rf /*",
+          "sudo rm -rf /",
+          "sudo rm -rf /*",
+          "rm -rf ~",
+          "rm -rf .",
+        ];
+        if (nukeCommands.some((c) => cmd.startsWith(c))) {
+          queueOutput(
+            <span style={{ color: "#ff5555" }}>Deleting system files...</span>,
+            <span style={{ color: "#ff5555" }}>Removing /usr... done.</span>,
+            <span style={{ color: "#ff5555" }}>Removing /etc... done.</span>,
+            <span style={{ color: "#ff5555" }}>Removing /home... done.</span>,
+            <span style={{ color: "#ff5555" }}>
+              Removing /portfolio... <b>ACCESS DENIED</b>
+            </span>,
+            "",
+            <span style={{ color: "#50fa7b" }}>
+              Nice try. This portfolio is indestructible. 😎
+            </span>,
+            <span style={{ color: "#6272a4" }}>
+              (You just tried to nuke a website running in your browser)
+            </span>
+          );
+        } else if (cmd === ":(){ :|:& };:" || cmd === "fork bomb") {
+          queueOutput(
+            <span style={{ color: "#ffb86c" }}>
+              🍴 Fork bomb detected!
+            </span>,
+            <span style={{ color: "#6272a4" }}>
+              Don't worry, React already handles infinite re-renders for me.
+            </span>
+          );
+        } else if (cmd === "sudo" || cmd.startsWith("sudo ")) {
+          queueOutput(
+            <span style={{ color: "#ff79c6" }}>
+              gabriel is not in the sudoers file. This incident will be reported.
+            </span>,
+            <span style={{ color: "#6272a4" }}>
+              (Just kidding, there's no one to report to)
+            </span>
+          );
+        } else if (cmd === "exit") {
+          queueOutput(
+            <span style={{ color: "#f8f8f2" }}>
+              There is no escape. Type <b>help</b> to accept your fate.
+            </span>
+          );
+        } else if (cmd === "code" || cmd === "code ." || cmd.startsWith("code ")) {
+          queueOutput(
+            <span style={{ color: "#ff5555" }}>
+              VS Code? You mean the Electron-powered RAM eater? 🐌
+            </span>,
+            <span style={{ color: "#ff5555" }}>
+              That's not a text editor, that's a Chrome tab wearing a trench coat.
+            </span>,
+            <span style={{ color: "#50fa7b" }}>
+              Real ones use neovim. Zero latency, infinite power. btw I use neovim.
+            </span>,
+            <span style={{ color: "#6272a4" }}>
+              (I still built a VS Code clone in the dock for you peasants. You're welcome.)
+            </span>
+          );
+        } else if (cmd === "vim" || cmd === "nvim" || cmd === "neovim") {
+          queueOutput(
+            <span style={{ color: "#50fa7b" }}>
+              Ah, I see you're a person of culture as well. btw I use neovim. 🤝
+            </span>
+          );
+        } else if (cmd === "nano") {
+          queueOutput(
+            <span style={{ color: "#ffb86c" }}>
+              nano? Acceptable. At least it's not VS Code.
+            </span>
+          );
+        } else if (cmd === "emacs") {
+          queueOutput(
+            <span style={{ color: "#f8f8f2" }}>
+              Emacs is a great operating system. Shame it lacks a good text editor.
+            </span>
+          );
+        } else if (cmd === "neofetch") {
+          queueOutput(...getAboutLines());
+        } else {
+          queueOutput(
+            "Command not found. Type 'help' to see the available commands."
+          );
+        }
+        break;
+      }
     }
   }
 
@@ -109,22 +198,18 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
     (TerminalOutput | TerminalInput)[]
   >([
     <TerminalOutput key="1">
-      .__________________________. <br></br> | .___________________. |==|
-      <br></br> | | ................. | | |<br></br> | | ::::gabriel.ms :: | | |
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hello
-      <br></br> | | ::::::::::::::::: | | |
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome
-      to my portfolio<br></br> | | ::::::::::::::::: | | |<br></br> | |
-      ::::::::::::::::: | | |<br></br> | | ::::::::::::::::: | | |
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type{" "}
-      <b>help</b> to get a list of commands available
-      <br></br> | | ::::::::::::::::: | |
-      ,|<br></br> | !___________________!
-      |(c|<br></br> !_______________________!__!<br></br> / \<br></br> /
-      [][][][][][][][][][][][][] \<br></br> / [][][][][][][][][][][][][][] \
-      <br></br>( [][][][][____________][][][][] )<br></br> \
-      ------------------------------ /<br></br> \______________________________/
-      <br></br>{" "}
+      <pre style={{ margin: 0, lineHeight: "1.4", fontFamily: "inherit", fontSize: "inherit" }}>
+        <span style={{ color: "#6272a4" }}>{"      ┌───────────────────────────┐\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      │ ┌───────────────────────┐ │\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      │ │                       │ │\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      │ │"}</span><span style={{ color: "#50fa7b" }}>{"   ▸ "}</span><span style={{ color: "#bd93f9" }}>{"gabriel"}</span><span style={{ color: "#ff79c6" }}>{".ms"}</span>{"        "}<span style={{ color: "#6272a4" }}>{"│ │"}</span>{"     "}<span style={{ color: "#f8f8f2" }}>{"Hello!\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      │ │"}</span><span style={{ color: "#50fa7b" }}>{"   ▸ portfolio"}</span><span style={{ color: "#f8f8f2" }}>{"▌"}</span>{"        "}<span style={{ color: "#6272a4" }}>{"│ │"}</span>{"     "}<span style={{ color: "#f8f8f2" }}>{"Welcome to my portfolio.\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      │ │                       │ │"}</span>{"     "}<span style={{ color: "#6272a4" }}>{"Type "}</span><span style={{ color: "#50fa7b" }}><b>{"help"}</b></span><span style={{ color: "#6272a4" }}>{" for commands,\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      │ └───────────────────────┘ │"}</span>{"     "}<span style={{ color: "#6272a4" }}>{"or feel free to use the 'system'.\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"      └────────────┬─┬────────────┘\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"           ╔═══════╧═╧═══════╗\n"}</span>
+        <span style={{ color: "#6272a4" }}>{"           ╚═════════════════╝"}</span>
+      </pre>
     </TerminalOutput>,
   ]);
 
