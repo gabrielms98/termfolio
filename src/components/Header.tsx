@@ -7,6 +7,7 @@ const appNames: Record<string, string> = {
   PHOTOS_APP: "Projects",
   SPOTIFY_APP: "Spotify",
   READER_APP: "Reader",
+  VSCODE_APP: "Code",
 };
 
 const menuItems = ["File", "Edit", "View", "Window", "Help"];

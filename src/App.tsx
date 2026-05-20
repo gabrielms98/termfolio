@@ -10,12 +10,14 @@ import MailWindow from "./components/MailWindow";
 import SpotifyWindow from "./components/SpotifyWindow";
 import PhotosWindow from "./components/PhotosWindow";
 import ReaderWindow from "./components/ReaderWindow";
+import VSCodeWindow from "./components/VSCodeWindow";
 import {
   TerminalIcon,
   MailIcon,
   PhotosIcon,
   SpotifyIcon,
   ReaderIcon,
+  VSCodeIcon,
 } from "./components/AppIcons";
 import { useState, useCallback } from "react";
 
@@ -49,6 +51,12 @@ function App() {
       app: <ReaderWindow />,
       show: false,
       icon: <ReaderIcon />,
+      zIndex: 0,
+    },
+    VSCODE_APP: {
+      app: <VSCodeWindow />,
+      show: false,
+      icon: <VSCodeIcon />,
       zIndex: 0,
     },
   });
