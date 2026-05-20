@@ -80,15 +80,19 @@ function DesktopIcons() {
   }
 
   return (
-    <div className="absolute top-10 right-6 z-0 flex flex-col items-center gap-1 select-none">
+    <div className="absolute top-10 right-6 z-[5] flex flex-col items-center gap-1 select-none">
       {/* Profile picture */}
-      <div className="mb-2">
+      <button
+        type="button"
+        className="mb-2 p-0 border-0 bg-transparent cursor-default rounded-2xl hover:ring-2 ring-white/40 transition-all"
+        onClick={() => toggleApp("IMAGE_APP", true)}
+      >
         <img
           src={ProfilePic}
           alt="Gabriel Martins"
           className="w-20 h-20 rounded-2xl object-cover shadow-lg shadow-black/30 border-2 border-white/20"
         />
-      </div>
+      </button>
 
       {items.map((item) => (
         <button

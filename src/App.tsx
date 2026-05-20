@@ -13,6 +13,7 @@ import PhotosWindow from "./components/PhotosWindow";
 import ReaderWindow from "./components/ReaderWindow";
 import VSCodeWindow from "./components/VSCodeWindow";
 import SafariWindow from "./components/SafariWindow";
+import ImageViewerWindow from "./components/ImageViewerWindow";
 import {
   TerminalIcon,
   MailIcon,
@@ -74,6 +75,14 @@ function App() {
       icon: <SafariIcon />,
       zIndex: 0,
       isMaximized: false,
+    },
+    IMAGE_APP: {
+      app: <ImageViewerWindow />,
+      show: false,
+      icon: null,
+      zIndex: 0,
+      isMaximized: false,
+      hidden: true,
     },
   });
 

@@ -4,6 +4,7 @@ export interface IAppState {
   icon: React.ReactNode;
   zIndex: number;
   isMaximized: boolean;
+  hidden?: boolean;
 }
 
 export type IAppList = Record<string, IAppState>;

@@ -84,7 +84,7 @@ function Window() {
   }, []);
 
   return (
-    <main className="window w-full h-full relative flex items-center justify-center">
+    <main className="window w-full h-full relative flex items-center justify-center pointer-events-none">
       <div className="w-screen h-screen">
         <div className="z-10 relative w-full h-full flex justify-center items-center">
           {Object.entries(apps)
@@ -97,7 +97,7 @@ function Window() {
                 return (
                   <div
                     key={id}
-                    className="fixed left-0 right-0 top-[25px] bottom-[52px]"
+                    className="fixed left-0 right-0 top-[25px] bottom-[52px] pointer-events-auto"
                     style={{ zIndex: app.zIndex }}
                     onPointerDownCapture={() => focusApp(id)}
                   >
@@ -114,7 +114,7 @@ function Window() {
                   positionOffset={{ x: i * 5 + "%", y: i * 5 + "%" }}
                 >
                   <div
-                    className="absolute drop-shadow-sm"
+                    className="absolute drop-shadow-sm pointer-events-auto"
                     style={{
                       zIndex: app.zIndex,
                       ...(customSize
