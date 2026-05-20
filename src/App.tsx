@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Window from "./components/Window";
 import DesktopBackground from "./assets/apple-bg.jpeg";
+import DesktopIcons from "./components/DesktopIcons";
 import Dock from "./components/Dock";
 
 import { AppContext } from "./contexts/AppContext";
@@ -126,6 +127,7 @@ function App() {
             className="w-full h-full aspect-video"
           ></img>
         </div>
+        <DesktopIcons />
         <Header />
         <Window />
         <Dock />
