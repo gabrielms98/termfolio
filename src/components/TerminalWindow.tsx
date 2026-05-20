@@ -19,7 +19,7 @@ const commandDescriptions: Record<Commands, string> = {
 };
 
 function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
-  const { toggleApp } = useContext(AppContext);
+  const { toggleApp, maximizeApp } = useContext(AppContext);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [isTyping, setIsTyping] = useState(false);
   const queueRef = useRef<(string | JSX.Element)[]>([]);
@@ -187,7 +187,8 @@ function TerminalWindow({ appId = "TERMINAL_APP" }: { appId?: string }) {
         </button>
         <button
           type="button"
-          className="window-btn w-[13px] h-[13px] rounded-full bg-[#27c93f] flex items-center justify-center border-0 p-0"
+          className="window-btn w-[13px] h-[13px] rounded-full bg-[#27c93f] flex items-center justify-center cursor-pointer border-0 p-0"
+          onClick={(e) => handleButton(e, () => maximizeApp(appId))}
         >
           <span className="text-[9px] leading-[13px] font-bold text-black/50">⤢</span>
         </button>

@@ -16,14 +16,12 @@ function WindowFrame({
   className = "",
   headerClassName = "bg-[#2a2a2a] border-b border-[#3a3a3a]",
 }: WindowFrameProps) {
-  const { toggleApp } = useContext(AppContext);
+  const { toggleApp, maximizeApp } = useContext(AppContext);
 
   function handleButton(e: React.MouseEvent, action: () => void) {
     e.stopPropagation();
     action();
   }
-
-  const close = () => toggleApp(appId, false);
 
   return (
     <div className={className}>
@@ -34,7 +32,7 @@ function WindowFrame({
           type="button"
           aria-label="Close window"
           className="window-btn w-[13px] h-[13px] rounded-full bg-[#ff5f56] flex items-center justify-center cursor-pointer border-0 p-0"
-          onClick={(e) => handleButton(e, close)}
+          onClick={(e) => handleButton(e, () => toggleApp(appId, false))}
         >
           <span className="text-[9px] leading-[13px] font-bold text-black/50">
             ✕
@@ -44,7 +42,7 @@ function WindowFrame({
           type="button"
           aria-label="Minimize window"
           className="window-btn w-[13px] h-[13px] rounded-full bg-[#ffbd2e] flex items-center justify-center cursor-pointer border-0 p-0"
-          onClick={(e) => handleButton(e, close)}
+          onClick={(e) => handleButton(e, () => toggleApp(appId, false))}
         >
           <span className="text-[10px] leading-[13px] font-bold text-black/50">
             −
@@ -53,7 +51,8 @@ function WindowFrame({
         <button
           type="button"
           aria-label="Maximize window"
-          className="window-btn w-[13px] h-[13px] rounded-full bg-[#27c93f] flex items-center justify-center border-0 p-0"
+          className="window-btn w-[13px] h-[13px] rounded-full bg-[#27c93f] flex items-center justify-center cursor-pointer border-0 p-0"
+          onClick={(e) => handleButton(e, () => maximizeApp(appId))}
         >
           <span className="text-[9px] leading-[13px] font-bold text-black/50">
             ⤢

@@ -5,4 +5,5 @@ export const AppContext = createContext<IAppContext>({
   apps: {},
   toggleApp: () => {},
   focusApp: () => {},
+  maximizeApp: () => {},
 });
