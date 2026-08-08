@@ -14,6 +14,7 @@ import ReaderWindow from "./components/ReaderWindow";
 import VSCodeWindow from "./components/VSCodeWindow";
 import SafariWindow from "./components/SafariWindow";
 import ImageViewerWindow from "./components/ImageViewerWindow";
+import ProjectWindow from "./components/ProjectWindow";
 import {
   TerminalIcon,
   MailIcon,
@@ -22,6 +23,8 @@ import {
   ReaderIcon,
   VSCodeIcon,
   SafariIcon,
+  BipIcon,
+  SonzinIcon,
 } from "./components/AppIcons";
 import { useState, useCallback } from "react";
 
@@ -73,6 +76,36 @@ function App() {
       app: <SafariWindow />,
       show: false,
       icon: <SafariIcon />,
+      zIndex: 0,
+      isMaximized: false,
+    },
+    BIP_APP: {
+      app: (
+        <ProjectWindow
+          appId="BIP_APP"
+          title="bip — range timer and leaderboard"
+          url="https://biptimer.com"
+          displayUrl="biptimer.com"
+          className="w-[80rem] max-w-[94vw] h-[50rem] max-h-[84vh]"
+        />
+      ),
+      show: false,
+      icon: <BipIcon />,
+      zIndex: 0,
+      isMaximized: false,
+    },
+    SONZIN_APP: {
+      app: (
+        <ProjectWindow
+          appId="SONZIN_APP"
+          title="Sonzin — adivinha a música"
+          url="https://sonzin.com.br"
+          displayUrl="sonzin.com.br"
+          className="w-[26rem] h-[40rem]"
+        />
+      ),
+      show: false,
+      icon: <SonzinIcon />,
       zIndex: 0,
       isMaximized: false,
     },

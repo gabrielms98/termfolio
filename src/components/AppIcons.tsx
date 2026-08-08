@@ -167,6 +167,31 @@ export const SafariIcon = () => (
   </svg>
 );
 
+export const BipIcon = ({ size = 34 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 120 120">
+    <defs>
+      <radialGradient id="bip-bloom" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#ffa31a" stopOpacity="0.5" />
+        <stop offset="100%" stopColor="#ffa31a" stopOpacity="0" />
+      </radialGradient>
+    </defs>
+    <rect width="120" height="120" rx="26" fill="#0a0908" />
+    <circle cx="60" cy="60" r="48" fill="url(#bip-bloom)" />
+    <rect x="38" y="38" width="44" height="44" rx="9" fill="#ffa31a" />
+  </svg>
+);
+
+export const SonzinIcon = ({ size = 34 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 120 120">
+    <rect width="120" height="120" rx="26" fill="#17112b" />
+    <g fill="none" strokeLinecap="round" strokeWidth="12">
+      <path stroke="#ffb020" d="M34 50v20" />
+      <path stroke="#ff3d81" d="M60 32v56" />
+      <path stroke="#4aa8ff" d="M86 43v34" />
+    </g>
+  </svg>
+);
+
 export const GitHubIcon = () => (
   <svg width="34" height="34" viewBox="0 0 120 120">
     <defs>

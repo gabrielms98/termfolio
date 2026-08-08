@@ -10,6 +10,9 @@ interface Size {
 function Window() {
   const { apps, focusApp } = useContext(AppContext);
   const [sizes, setSizes] = useState<Record<string, Size>>({});
+  // While a window is being dragged or resized, iframes must not swallow
+  // mouse events or the gesture dies as soon as the cursor crosses one.
+  const [interacting, setInteracting] = useState(false);
   const prevShowRef = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -48,6 +51,7 @@ function Window() {
         startW: sizes[id]?.width ?? rect.width,
         startH: sizes[id]?.height ?? rect.height,
       };
+      setInteracting(true);
       focusApp(id);
     },
     [sizes, focusApp]
@@ -73,6 +77,7 @@ function Window() {
 
     function onUp() {
       resizeRef.current = null;
+      setInteracting(false);
     }
 
     document.addEventListener("mousemove", onMove);
@@ -86,7 +91,11 @@ function Window() {
   return (
     <main className="window w-full h-full relative flex items-center justify-center pointer-events-none">
       <div className="w-screen h-screen">
-        <div className="z-10 relative w-full h-full flex justify-center items-center">
+        <div
+          className={`z-10 relative w-full h-full flex justify-center items-center ${
+            interacting ? "[&_iframe]:pointer-events-none" : ""
+          }`}
+        >
           {Object.entries(apps)
             .filter(([, app]) => app.show)
             .map(([id, app], i) => {
@@ -112,6 +121,8 @@ function Window() {
                 <Draggable
                   key={id}
                   positionOffset={{ x: i * 5 + "%", y: i * 5 + "%" }}
+                  onStart={() => setInteracting(true)}
+                  onStop={() => setInteracting(false)}
                 >
                   <div
                     className="absolute drop-shadow-sm pointer-events-auto"

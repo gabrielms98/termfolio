@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import ProfilePic from "../assets/profile-pic.jpeg";
+import { BipIcon, SonzinIcon } from "./AppIcons";
 
 interface DesktopItem {
   label: string;
@@ -53,6 +54,18 @@ const items: DesktopItem[] = [
     icon: <FolderIcon />,
     action: "app",
     target: "SAFARI_APP",
+  },
+  {
+    label: "bip",
+    icon: <BipIcon size={48} />,
+    action: "app",
+    target: "BIP_APP",
+  },
+  {
+    label: "Sonzin",
+    icon: <SonzinIcon size={48} />,
+    action: "app",
+    target: "SONZIN_APP",
   },
   {
     label: "GitHub",
