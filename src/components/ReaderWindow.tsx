@@ -1,18 +1,39 @@
-import { contact, summary, experiences, education, skills } from "../data/portfolio";
+import {
+  contact,
+  summary,
+  coreCompetencies,
+  experiences,
+  education,
+  skills,
+  languages,
+} from "../data/portfolio";
 import WindowFrame from "./WindowFrame";
 
 const cv = {
   name: contact.name,
-  contact: `${contact.location} | ${contact.email} | ${contact.linkedin}`,
+  contact: `${contact.phone} | ${contact.email} | ${contact.linkedin} | ${contact.web} | ${contact.location}`,
   summary,
+  competencies: coreCompetencies,
   experience: experiences.map((xp) => ({
     title: xp.title,
     company: xp.company,
     period: `${xp.begin} – ${xp.end}`,
-    description: xp.description,
+    highlights: xp.highlights,
+    stack: xp.stack.join(", "),
   })),
   education,
   skills,
+  languages,
+};
+
+const sectionStyle: React.CSSProperties = {
+  fontSize: "12px",
+  textTransform: "uppercase",
+  letterSpacing: "1px",
+  borderBottom: "1px solid #ddd",
+  paddingBottom: "3px",
+  marginBottom: "8px",
+  marginTop: "14px",
 };
 
 function CVPage() {
@@ -33,20 +54,27 @@ function CVPage() {
         {cv.contact}
       </p>
 
+      <h2 style={{ ...sectionStyle, marginTop: 0 }}>Professional Summary</h2>
       <p style={{ marginBottom: "14px" }}>{cv.summary}</p>
 
-      <h2
-        style={{
-          fontSize: "12px",
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          borderBottom: "1px solid #ddd",
-          paddingBottom: "3px",
-          marginBottom: "8px",
-        }}
-      >
-        Experience
-      </h2>
+      <h2 style={sectionStyle}>Core Competencies</h2>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 6px" }}>
+        {cv.competencies.map((c) => (
+          <span
+            key={c}
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "3px",
+              padding: "1px 6px",
+              fontSize: "10px",
+            }}
+          >
+            {c}
+          </span>
+        ))}
+      </div>
+
+      <h2 style={sectionStyle}>Work Experience</h2>
       {cv.experience.map((job, i) => (
         <div key={i} style={{ marginBottom: "10px" }}>
           <div
@@ -63,52 +91,42 @@ function CVPage() {
               {job.period}
             </span>
           </div>
-          <p style={{ margin: "2px 0 0", color: "#333" }}>{job.description}</p>
+          <ul style={{ margin: "2px 0 0", paddingLeft: "16px", color: "#333" }}>
+            {job.highlights.map((h, j) => (
+              <li key={j}>{h}</li>
+            ))}
+          </ul>
+          <p style={{ margin: "2px 0 0", color: "#666", fontSize: "10px" }}>
+            <strong>Stack:</strong> {job.stack}
+          </p>
         </div>
       ))}
 
-      <h2
-        style={{
-          fontSize: "12px",
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          borderBottom: "1px solid #ddd",
-          paddingBottom: "3px",
-          marginBottom: "8px",
-          marginTop: "14px",
-        }}
-      >
-        Education
-      </h2>
-      {cv.education.map((edu, i) => (
-        <p key={i} style={{ margin: "2px 0" }}>
-          {edu}
-        </p>
-      ))}
-
-      <h2
-        style={{
-          fontSize: "12px",
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          borderBottom: "1px solid #ddd",
-          paddingBottom: "3px",
-          marginBottom: "8px",
-          marginTop: "14px",
-        }}
-      >
-        Skills
-      </h2>
+      <h2 style={sectionStyle}>Skills</h2>
       {Object.entries(cv.skills).map(([category, items]) => (
         <p key={category} style={{ margin: "2px 0" }}>
           <strong>{category}:</strong> {items}
+        </p>
+      ))}
+
+      <h2 style={sectionStyle}>Languages</h2>
+      <p style={{ margin: "2px 0" }}>
+        {Object.entries(cv.languages)
+          .map(([lang, level]) => `${lang}: ${level}`)
+          .join(" | ")}
+      </p>
+
+      <h2 style={sectionStyle}>Education</h2>
+      {cv.education.map((edu, i) => (
+        <p key={i} style={{ margin: "2px 0" }}>
+          {edu}
         </p>
       ))}
     </div>
   );
 }
 
-function handleDownload() {
+export function handleDownload() {
   const printWindow = window.open("", "_blank");
   if (!printWindow) return;
   printWindow.document.write(`<!DOCTYPE html>
@@ -121,27 +139,36 @@ function handleDownload() {
   .job { margin-bottom: 10px; }
   .job-header { display: flex; justify-content: space-between; }
   .period { color: #666; font-size: 10px; }
-  .desc { margin: 2px 0 0; color: #333; }
+  ul { margin: 2px 0 0; padding-left: 16px; color: #333; }
+  .stack { margin: 2px 0 0; color: #666; font-size: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+  .chip { border: 1px solid #ccc; border-radius: 3px; padding: 1px 6px; font-size: 10px; }
   @media print { body { padding: 0; } }
 </style></head><body>
 <h1>${cv.name}</h1>
 <p class="contact">${cv.contact}</p>
+<h2>Professional Summary</h2>
 <p>${cv.summary}</p>
-<h2>Experience</h2>
+<h2>Core Competencies</h2>
+<div class="chips">${cv.competencies.map((c) => `<span class="chip">${c}</span>`).join("")}</div>
+<h2>Work Experience</h2>
 ${cv.experience
   .map(
     (j) => `<div class="job">
   <div class="job-header"><strong>${j.title} — ${j.company}</strong><span class="period">${j.period}</span></div>
-  <p class="desc">${j.description}</p>
+  <ul>${j.highlights.map((h) => `<li>${h}</li>`).join("")}</ul>
+  <p class="stack"><strong>Stack:</strong> ${j.stack}</p>
 </div>`
   )
   .join("")}
-<h2>Education</h2>
-${cv.education.map((e) => `<p>${e}</p>`).join("")}
 <h2>Skills</h2>
 ${Object.entries(cv.skills)
   .map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`)
   .join("")}
+<h2>Languages</h2>
+<p>${Object.entries(cv.languages).map(([l, v]) => `${l}: ${v}`).join(" | ")}</p>
+<h2>Education</h2>
+${cv.education.map((e) => `<p>${e}</p>`).join("")}
 </body></html>`);
   printWindow.document.close();
   printWindow.print();

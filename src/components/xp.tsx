@@ -6,7 +6,7 @@ export function getExperienceLines(): JSX.Element[] {
       <b style={{ color: "#f8f8f2" }}>Experiences</b>
       <br />
       <span style={{ color: "#6272a4" }}>
-        6+ years building software for the industry
+        7+ years building SaaS products end to end
       </span>
     </p>,
     ...experiences.map((experience) => (
